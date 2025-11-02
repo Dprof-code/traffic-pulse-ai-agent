@@ -1,7 +1,7 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 import axios from "axios";
-require("dotenv").config();
+import "dotenv/config";
 
 interface TrafficData {
     normalTime: string;
