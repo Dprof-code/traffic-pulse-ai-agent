@@ -1,7 +1,7 @@
 import { createStep, createWorkflow } from '@mastra/core/workflows';
 import { string, z } from 'zod';
 import axios from "axios";
-require("dotenv").config();
+import "dotenv/config";
 
 const trafficSchema = z.object({
     normalTime: z.string(),
