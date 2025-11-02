@@ -25,8 +25,31 @@ export const trafficTool = createTool({
         status: z.string(),
         delayMinutes: z.number(),
     }),
-    execute: async (context: any) => {
-        const { origin, destination } = context.inputData || context;
+    execute: async (ctx: any) => {
+        let origin, destination;
+
+        if (ctx.context && ctx.context.origin && ctx.context.destination) {
+            origin = ctx.context.origin;
+            destination = ctx.context.destination;
+        }
+        else if (ctx.inputData) {
+            origin = ctx.inputData.origin;
+            destination = ctx.inputData.destination;
+        }
+        else if (ctx.origin && ctx.destination) {
+            origin = ctx.origin;
+            destination = ctx.destination;
+        } else {
+            console.error("Failed to extract origin/destination from context");
+            throw new Error("Missing origin or destination in context");
+        }
+
+        if (!origin || !destination) {
+            throw new Error(`Missing required parameters. Origin: ${origin}, Destination: ${destination}`);
+        }
+
+        console.log(`Fetching traffic from ${origin} to ${destination}`);
+
         const result = await getTrafficInfo(origin, destination);
         if (!result) {
             throw new Error("Failed to fetch traffic information");

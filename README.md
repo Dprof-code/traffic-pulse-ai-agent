@@ -353,3 +353,6 @@ This project is licensed under the ISC License. For more details, refer to the `
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Mastra](https://img.shields.io/badge/Mastra-0.23+-purple)](https://mastra.ai/)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+
+
+/a2a/agent/:agentId'
