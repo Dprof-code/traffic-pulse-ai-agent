@@ -4,11 +4,11 @@ import axios from "axios";
 require("dotenv").config();
 
 const trafficSchema = z.object({
-    normalTime: string,
-    trafficTime: string,
-    distance: string,
-    status: string,
-    delayMinutes: string,
+    normalTime: z.string(),
+    trafficTime: z.string(),
+    distance: z.string(),
+    status: z.string(),
+    delayMinutes: z.number(),
 });
 
 interface TrafficData {
@@ -28,7 +28,11 @@ const fetchTrafficInfo = createStep({
     }),
     outputSchema: trafficSchema,
     execute: async ({ inputData }) => {
-        return await getTrafficInfo(inputData.origin, inputData.destination)
+        const result = await getTrafficInfo(inputData.origin, inputData.destination);
+        if (!result) {
+            throw new Error("Failed to fetch traffic information");
+        }
+        return result;
     },
 })
 

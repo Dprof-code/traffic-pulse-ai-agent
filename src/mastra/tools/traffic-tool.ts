@@ -25,9 +25,13 @@ export const trafficTool = createTool({
         status: z.string(),
         delayMinutes: z.number(),
     }),
-    execute: async ({ context }) => {
-        console.log(context);
-        return await getTrafficInfo(context.origin, context.destination);
+    execute: async (context: any) => {
+        const { origin, destination } = context.inputData || context;
+        const result = await getTrafficInfo(origin, destination);
+        if (!result) {
+            throw new Error("Failed to fetch traffic information");
+        }
+        return result;
     },
 });
 

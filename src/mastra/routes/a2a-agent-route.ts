@@ -49,7 +49,7 @@ export const a2aAgentRoute = registerApiRoute('/a2a/agent/:agentId', {
             // Convert A2A messages to Mastra format
             const mastraMessages = messagesList.map((msg) => ({
                 role: msg.role,
-                content: msg.parts?.map((part) => {
+                content: msg.parts?.map((part: any) => {
                     if (part.kind === 'text') return part.text;
                     if (part.kind === 'data') return JSON.stringify(part.data);
                     return '';
@@ -75,8 +75,8 @@ export const a2aAgentRoute = registerApiRoute('/a2a/agent/:agentId', {
                     artifactId: randomUUID(),
                     name: 'ToolResults',
                     parts: response.toolResults.map((result) => ({
-                        kind: 'data',
-                        data: result
+                        kind: 'text',
+                        text: JSON.stringify(result)
                     }))
                 });
             }
@@ -123,13 +123,14 @@ export const a2aAgentRoute = registerApiRoute('/a2a/agent/:agentId', {
             });
 
         } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
             return c.json({
                 jsonrpc: '2.0',
                 id: null,
                 error: {
                     code: -32603,
                     message: 'Internal error',
-                    data: { details: error.message }
+                    data: { details: errorMessage }
                 }
             }, 500);
         }

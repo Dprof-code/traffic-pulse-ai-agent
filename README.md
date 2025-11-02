@@ -278,11 +278,11 @@ Custom LLM-judged scorer that validates proper translation of non-English locati
 ## Technologies Used
 
 | Technology                                                                   | Description                                                          |
-| :--------------------------------------------------------------------------- | :------------------------------------------------------------------- | --- |
+| :--------------------------------------------------------------------------- | :------------------------------------------------------------------- |
 | [Node.js](https://nodejs.org/)                                               | JavaScript runtime for server-side development (>=20.9.0)            |
 | [Mastra AI](https://mastra.ai/)                                              | AI agent framework for building and orchestrating intelligent agents |
 | [TypeScript](https://www.typescriptlang.org/)                                | Type-safe JavaScript for robust code development                     |
-| [Google Routes API](https://developers.google.com/maps/documentation/routes) | Real-time traffic and routing information                            |     |
+| [Google Routes API](https://developers.google.com/maps/documentation/routes) | Real-time traffic and routing information                            |
 | [LibSQL](https://github.com/libsql/libsql)                                   | SQLite-compatible database for agent memory and persistence          |
 | [Axios](https://axios-http.com/)                                             | Promise-based HTTP client for API requests                           |
 | [Zod](https://zod.dev/)                                                      | TypeScript-first schema validation library                           |
